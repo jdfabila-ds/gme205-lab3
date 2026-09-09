@@ -82,6 +82,28 @@ class Point:
         return (self.tag or "").lower() == "poi"
 
 
+    @classmethod
+    def from_dict(cls, d: dict):
+         # Read/convert the external representation
+         # Then call cls(...) so __init__ remains the validation boundary
+        return cls(
+            id=str(d["id"]),
+            lon=float(d["lon"]),
+            lat=float(d["lat"]),
+            name=d["name"],
+            tag=d["tag"]
+        )
+
+    
+    def as_dict(self):
+        return (
+            {"id": self.id,
+             "name": self.name,
+             "tag": self.tag,
+             "geometry": [self.lon, self.lat],
+             "bbox": [self.lon, self.lat, self.lon, self.lat],
+             }
+        )
 ###---------------------------
 
 
