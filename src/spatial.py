@@ -183,6 +183,7 @@ class Parcel(SpatialObject):
         return (
             {"parcel_id": self.parcel_id,
              "bbox": self.bbox(),
-             "attributes": self.attributes
+             "attributes": self.attributes,
+             "geometry": self.geometry.wkt,
              }
         )
